@@ -38,7 +38,11 @@ void writeFloat(float numero){
   //3 digit of floating point precision
   int whole_part;
   int decimal_part;
+  if(numero<0 && numero> -1) {
+    writeLetter('-');
+  }
   whole_part=(int)numero;
+
   decimal_part=abs((((float) numero)-whole_part))*(pow(10,MAX_DECIMALS));
   writeInt(whole_part);
   writeLetter('.');

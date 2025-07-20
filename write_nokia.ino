@@ -1,16 +1,4 @@
 
-
-void LcdWriteString(char *characters)
-{
-  while(*characters) LcdWriteCharacter(*characters++);
-}
-
-void LcdWriteCharacter(char character)
-{
-  for(int i=0; i<5; i++) LcdWriteData(ASCII[character - 0x20][i]);
-  LcdWriteData(0x00);
-}
-
 void LcdWriteData(byte dat)
 {
   digitalWrite(DC, HIGH); //DC pin is low for commands
@@ -18,6 +6,18 @@ void LcdWriteData(byte dat)
   shiftOut(DIN, CLK, MSBFIRST, dat); //transmit serial data
   digitalWrite(CE, HIGH);
 }
+
+void LcdWriteCharacter(char character)
+{
+  for(int i=0; i<5; i++) LcdWriteData(ASCII[character - 0x20][i]);
+  LcdWriteData(0x00);
+}
+void LcdWriteString(char *characters)
+{
+  while(*characters) LcdWriteCharacter(*characters++);
+}
+
+
 void LcdWriteCmd(byte cmd)
 {
   digitalWrite(DC, LOW); //DC pin is low for commands
@@ -48,7 +48,7 @@ int pixelFitsInDisplay(int x,int y){
   return x>= 0 && x<MAX_X && y>0 && y<MAX_Y;
 }
 int writePixelToDisplayBuffer(int x,int y,DisplayBuffer display_buffer){
-  if(pixelFitsInDisplay()){
+  if(pixelFitsInDisplay(x,y)){
     return 1;
   }
   int shift = y%8;

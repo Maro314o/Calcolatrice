@@ -28,7 +28,7 @@ int untilRead(){
   do {
     key=readKeypad();
   }while(key==-1);
-  delay(300);
+  delay(200);
   return key;
 }
 int untilReadPlusMode(){
@@ -40,6 +40,10 @@ int untilReadPlusMode(){
       key=(digitalRead(pad1)==LOW)?-1:16;
     if(key==-1)
       key=(digitalRead(pad2)==LOW)?-1:17;
+    if(key==-1)
+      key=(digitalRead(pad3)==LOW)?-1:18;
+    if(key==-1)
+      key=(digitalRead(menu)==LOW)?-1:19;
 
 
 

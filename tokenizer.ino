@@ -1,5 +1,5 @@
 
-///-100 is forbidden to use to rappresent an  operator
+///-100 is forbidden from being used as an  operator
 int char_operator_to_int_operator(char operatorT) {
   switch (operatorT) {
     case '(':
@@ -21,6 +21,10 @@ int char_operator_to_int_operator(char operatorT) {
       return 5;
       break;
     default:
+      if(operatorT>=100){
+        return operatorT;
+        break;
+      }
       return -100;
       break;
 

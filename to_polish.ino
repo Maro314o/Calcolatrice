@@ -12,11 +12,17 @@ int int_operator_to_precedence(int operatorT) {
     case 4: // *
       return 2;
       break;
-    case 5:
+    case 5: // /
       return 2;
       break;
     
+    
     default:
+      //functions
+      if(operatorT>=50){
+        return 2;
+        break;
+      }
       return -100;
       break;
 
@@ -49,6 +55,8 @@ void to_polish(int input_operators_arr[], float input_numbers_arr[], int output_
     }
     else{
       //svuota l'holding stack fino a quando non puoi pushare l'operando su esso
+      //( -> 0 
+      //) -> 1
       if (int_operator == 0) {
         int_stack_push(holding_stack, & holding_stack_ptr, int_operator);
       } 

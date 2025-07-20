@@ -4,8 +4,10 @@ void setup_fn(){
   //keypad
   pinMode(commandMode, OUTPUT);
   pinMode(sendCommand, OUTPUT);
+  pinMode(menu,INPUT_PULLDOWN);
   pinMode(pad1, INPUT_PULLDOWN);
   pinMode(pad2, INPUT_PULLDOWN);
+  pinMode(pad3, INPUT_PULLDOWN);
 
   // Set keypad rows (pins 6 to 9) as INPUT_PULLUP
   for (int i = 6; i < 10; i++) {
