@@ -43,7 +43,7 @@ int untilReadPlusMode(){
     if(key==-1)
       key=(digitalRead(pad3)==LOW)?-1:18;
     if(key==-1)
-      key=(digitalRead(menu)==LOW)?-1:19;
+      key=(digitalRead(menu_b)==LOW)?-1:19;
 
 
 

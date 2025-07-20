@@ -4,7 +4,7 @@ void setup_fn(){
   //keypad
   pinMode(commandMode, OUTPUT);
   pinMode(sendCommand, OUTPUT);
-  pinMode(menu,INPUT_PULLDOWN);
+  pinMode(menu_b,INPUT_PULLDOWN);
   pinMode(pad1, INPUT_PULLDOWN);
   pinMode(pad2, INPUT_PULLDOWN);
   pinMode(pad3, INPUT_PULLDOWN);

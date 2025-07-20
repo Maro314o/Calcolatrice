@@ -3,23 +3,26 @@
 
 
 //display nokia
-const int RST = 20;
-const int CE = 19;
-const int DC = 18;
-const int DIN = 17;
-const int CLK = 16;
+#define RST 20
+#define CE 19
+#define DC 18
+#define DIN 17
+#define CLK 16
 
-const int NUMBERS = 0;
-const int FUNCTIONS= 1;
-const int COSTANTS= 2;
-const int MENU= 3;
-const int LOG = 104;
-const int ROOT = 232;
-const int SIN = 107;
-const int COS = 108;
-const int TAN = 109;
-const int LN = 110;
-const int POW = 111;
+#define NUMBERS 0
+#define FUNCTION 1
+#define COSTANT 2
+#define MENU 3
+#define LOG  104
+#define ROOT  32
+#define SIN  107
+#define COS  108
+#define TAN  109
+#define LN  110
+#define POW  11
+#define X  20
+#define E 21 
+#define Pi 22 
 
 
 
@@ -29,19 +32,19 @@ const int POW = 111;
 const int DISPLAY_BUFFER_LEN = MAX_Y*MAX_X/8;
 
 //display 1602
-const int commandMode = 0;
-const int sendCommand = 1;
-const int bit3 = 5;
-const int bit2 = 4;
-const int bit1 = 3;
-const int bit0 = 2;
-const int ledPin = 25;
-const int MAX_INT_DIGITS=16;
-const int MAX_DECIMALS=3;
-const int MAX_EXPRESSION_SYMBOLS=128;
+#define commandMode 0
+#define sendCommand 1
+#define bit3 5
+#define bit2 4
+#define bit1 3
+#define bit0 2
+#define ledPin 25
+#define MAX_INT_DIGITS 16
+#define MAX_DECIMALS 3
+#define MAX_EXPRESSION_SYMBOLS 28
 //keypad
 typedef char Symbol[10];
-const int menu= 28;
+const int menu_b= 28;
 const int pad1 = 27;
 const int pad2 = 26;
 const int pad3 =  22;
@@ -65,7 +68,7 @@ const int KEYCALC2[4][4]={
   {'0','0','0','0'},
 };
 const int KEYCALC3[4][4]={
-  {X,E,PI,'0'},
+  {X,E,Pi,'0'},
   {'0','0','0','0'},
   {'0','0','0','0'},
   {'0','0','0','0'},
