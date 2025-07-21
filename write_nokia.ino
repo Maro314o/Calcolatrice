@@ -48,7 +48,7 @@ int pixelFitsInDisplay(int x,int y){
   return x>= 0 && x<MAX_X && y>0 && y<MAX_Y;
 }
 int writePixelToDisplayBuffer(int x,int y,DisplayBuffer display_buffer){
-  if(pixelFitsInDisplay(x,y)){
+  if(!pixelFitsInDisplay(x,y)){
     return 1;
   }
   int shift = y%8;

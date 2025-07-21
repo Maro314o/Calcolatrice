@@ -48,7 +48,12 @@ void writeFloat(float numero){
   writeLetter('.');
   writeInt(decimal_part);
 }
-
+void writeNumber(float numero){
+  if (numero== ((float)((int)numero)))
+    writeInt(numero);
+  else
+    writeFloat(numero);
+}
 void clearDisplay(){
   //clears the display
   digitalWrite(commandMode, LOW);

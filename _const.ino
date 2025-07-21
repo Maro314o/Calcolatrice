@@ -1,6 +1,14 @@
 #include "_font.h"
 #include "displaybuffer.h"
-
+#include <math.h>
+#define CHECK_ERROR_MACRO(error, error_buff) \
+    do { \
+        if (error) { \
+            retrive_error(error_buff, error); \
+            throw_error(error_buff); \
+            return; \
+        } \
+    } while(0)
 
 //display nokia
 #define RST 20
@@ -14,15 +22,19 @@
 #define COSTANT 2
 #define MENU 3
 #define LOG  104
-#define ROOT  32
+#define ROOT 232
 #define SIN  107
 #define COS  108
 #define TAN  109
 #define LN  110
-#define POW  11
+#define POW  111
 #define X  20
 #define E 21 
 #define Pi 22 
+#define SCIENTIFIC_CALCULATOR 0
+#define GRAPHIC_CALCULATOR 1
+#define FUNCTION_RESOLUTION 100000 //number of points on the graph
+
 
 
 
@@ -32,6 +44,7 @@
 const int DISPLAY_BUFFER_LEN = MAX_Y*MAX_X/8;
 
 //display 1602
+//
 #define commandMode 0
 #define sendCommand 1
 #define bit3 5
@@ -72,6 +85,12 @@ const int KEYCALC3[4][4]={
   {'0','0','0','0'},
   {'0','0','0','0'},
   {'0','0','0','0'},
+};
+const int numb[4][4]={
+  {0,1,2,3},
+  {4,5,6,7},
+  {8,9,10,11},
+  {12,13,14,15},
 };
 char INPUT_ERROR_MSG[]="INPUT ERROR";
 const int INPUT_ERROR=1;

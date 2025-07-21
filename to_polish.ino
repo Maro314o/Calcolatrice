@@ -19,7 +19,7 @@ int int_operator_to_precedence(int operatorT) {
     
     default:
       //functions
-      if(operatorT>=50){
+      if(operatorT>=60){
         return 2;
         break;
       }
