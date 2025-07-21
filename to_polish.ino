@@ -50,7 +50,13 @@ void to_polish(int input_operators_arr[], float input_numbers_arr[], int output_
   int int_operator;
   for (int i = 0; i < * len; i++) {
     int_operator=input_operators_arr[i];
-    if (int_operator==-100) {
+    if(int_operator==X){
+    float_stack_push(output_numbers_arr, &output_ptr,0);
+    (  output_ptr) --;
+    int_stack_push(output_operators_arr, &output_ptr, X); //-100 is the number in the operand stack
+
+    }else
+    if (int_operator==-100  ) {
       flushNumberStack(output_numbers_arr, output_operators_arr, & output_ptr, input_numbers_arr[i]);
     }
     else{

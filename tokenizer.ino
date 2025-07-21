@@ -68,7 +68,7 @@ void parallelOperatorPush(int input_operator_arr[], float input_numbers_arr[],
                    -100);  //-100 is the operand in the number stack
 }
 void tokenize(char input_str[], int input_operator_arr[],
-              float input_numbers_arr[], int *len, float variable) {
+              float input_numbers_arr[], int *len) {
   // gestion del '-' come primo carattere
   if (input_str[0] == '-') {
     insert_head(input_str, len, '0');
@@ -96,9 +96,8 @@ void tokenize(char input_str[], int input_operator_arr[],
                          &number, &number_streak, &decimal);
 
     } else if (input_str[i] == X) {
-      number = variable;
-      parallelNumberPush(input_operator_arr, input_numbers_arr, &output_ptr,
-                         &number, &number_streak, &decimal);
+      parallelOperatorPush(input_operator_arr, input_numbers_arr,
+                               &output_ptr, X);
 
     } else {
       if (input_str[i] >= '0' && input_str[i] <= '9') {

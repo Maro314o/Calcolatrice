@@ -33,7 +33,7 @@
 #define Pi 22 
 #define SCIENTIFIC_CALCULATOR 0
 #define GRAPHIC_CALCULATOR 1
-#define FUNCTION_RESOLUTION 100000 //number of points on the graph
+#define FUNCTION_RESOLUTION 10000 //number of points on the graph
 
 
 

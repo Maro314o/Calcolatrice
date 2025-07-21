@@ -88,7 +88,7 @@ float do_function(float num1,int operatorT){
   }
 
 }
-float shounting_yard(int operators[],float numbers[],int len,int *error){
+float shounting_yard(int operators[],float numbers[],int len,int *error,float variable){
   float number_stack[len];
   int number_stack_ptr=0;
   int risultato;
@@ -97,6 +97,9 @@ float shounting_yard(int operators[],float numbers[],int len,int *error){
   for(int i=0;i<len;i++){
     if(operators[i]==-100){
       float_stack_push(number_stack,&number_stack_ptr,numbers[i]);
+    }else if(operators[i]==X){
+      float_stack_push(number_stack,&number_stack_ptr,variable);
+
     }
     else{
       //negative number operator

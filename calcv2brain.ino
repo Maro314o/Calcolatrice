@@ -72,8 +72,7 @@ float evaluate(char expression[], int expression_ptr, int* error,
   int input_operands[MAX_EXPRESSION_SYMBOLS];
   float input_numbers[MAX_EXPRESSION_SYMBOLS];
 
-  tokenize(expression, input_operands, input_numbers, &expression_ptr,
-           variable);
+  tokenize(expression, input_operands, input_numbers, &expression_ptr);
   // displayStackFloat(input_numbers,expression_ptr);
   // displayStackInt(input_operands,expression_ptr);
   to_polish(input_operands, input_numbers, output_operands, output_numbers,
@@ -84,8 +83,8 @@ float evaluate(char expression[], int expression_ptr, int* error,
   // displayStackFloat(output_numbers,expression_ptr);
   // displayStackInt(output_operands,expression_ptr);
 
-  float result =
-      shounting_yard(output_operands, output_numbers, expression_ptr, error);
+  float result = shounting_yard(output_operands, output_numbers, expression_ptr,
+                                error, variable);
   if (*error) {
     return 0.0;
   }
@@ -93,7 +92,7 @@ float evaluate(char expression[], int expression_ptr, int* error,
   return result;
 }
 void zoom(float coords[], float factor) {
-  factor=1/factor;
+  factor = 1 / factor;
   float xRange = MAX_X * factor;
   float yRange = MAX_Y * factor;
 
@@ -106,21 +105,31 @@ void zoom(float coords[], float factor) {
 }
 void write_function_to_buffer(DisplayBuffer function_display, char expression[],
                               int expression_ptr, int* error) {
+  float zoomv = 4;
+  float x_max = MAX_X * (1 / zoomv);
   int test = 0;
   float coords[2];
-  float step = MAX_X / ((float)FUNCTION_RESOLUTION);
+  float step = x_max / ((float)FUNCTION_RESOLUTION);
   float value;
   float x, y;
-  for (float i = -(MAX_X / 2.0); i < MAX_X / 2.0; i += step) {
-    value = evaluate(expression, expression_ptr, error, i);
+  int output_operands[MAX_EXPRESSION_SYMBOLS];
+  float output_numbers[MAX_EXPRESSION_SYMBOLS];
+  int input_operands[MAX_EXPRESSION_SYMBOLS];
+  float input_numbers[MAX_EXPRESSION_SYMBOLS];
+
+  tokenize(expression, input_operands, input_numbers, &expression_ptr);
+  to_polish(input_operands, input_numbers, output_operands, output_numbers,
+            &expression_ptr, error);
+
+  for (float i = -(x_max / 2.0); i < x_max / 2.0; i += step) {
+    value = shounting_yard(output_operands, output_numbers, expression_ptr,
+                           error, i);
     coords[0] = i;
     coords[1] = value;
-    zoom(coords, 4);
-
+    zoom(coords, zoomv);
     x = coords[0];
     y = coords[1];
-
-    test += writePixelToDisplayBuffer(x+1, 48 - y, function_display);
+    test += writePixelToDisplayBuffer(x + 1, 48 - y, function_display);
   }
   BufferMerge(function_graph_bg, function_display);
   writeNumber(test);
